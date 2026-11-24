@@ -124,7 +124,16 @@ The report has three pages:
 - **Drivers:** a credit score × debt heat map, a scatter, and Key Influencers.
 - **Model:** metrics, the confusion matrix, risk segments, and a threshold slider that recalculates approvals and errors.
 
-The steps are in `powerbi/DASHBOARD_GUIDE.md`, and the measures are in `powerbi/DAX_measures.dax`. The image at the top is a matplotlib mock-up made from the same CSVs, so the README has something to show. After running `python main.py` again, hit Refresh in Power BI.
+The steps are in `powerbi/DASHBOARD_GUIDE.md`, and the measures are in `powerbi/DAX_measures.dax`. The page images below are mock-ups drawn with matplotlib from the same CSVs (`python -m src.dashboard_preview`), following the layout in the guide. They show the intended report, not Power BI screenshots. After running `python main.py` again, hit Refresh in Power BI.
+
+**Page 1: Overview**
+![Overview](reports/figures/powerbi/1_overview.png)
+
+**Page 2: Drivers**
+![Drivers](reports/figures/powerbi/2_drivers.png)
+
+**Page 3: Model & Risk**
+![Model and risk](reports/figures/powerbi/3_model_and_risk.png)
 
 ## Limitations
 
