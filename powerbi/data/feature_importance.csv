@@ -1,0 +1,15 @@
+Feature,Importance
+PriorDefault,0.8262
+Income,0.0621
+Debt,0.0361
+YearsEmployed,0.0268
+Employed,0.021
+EducationLevel,0.0115
+CreditScore,0.0054
+Married,0.0041
+BankCustomer,0.0034
+Citizen,0.0031
+Age,0.0003
+Gender,0.0
+Ethnicity,0.0
+DriversLicense,0.0

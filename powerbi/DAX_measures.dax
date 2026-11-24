@@ -1,0 +1,66 @@
+// Measures for the credit approval report. Put them in an empty _Measures table.
+
+// Volume & approval
+Total Applications = COUNTROWS ( Applications )
+
+Approved Applications = CALCULATE ( [Total Applications], Applications[Approved] = 1 )
+
+Rejected Applications = CALCULATE ( [Total Applications], Applications[Approved] = 0 )
+
+Approval Rate = DIVIDE ( [Approved Applications], [Total Applications] )
+
+Avg Approval Probability = AVERAGE ( Applications[ApprovalProbability] )
+
+Avg Income = AVERAGE ( Applications[Income] )
+
+Avg Debt = AVERAGE ( Applications[Debt] )
+
+Avg Years Employed = AVERAGE ( Applications[YearsEmployed] )
+
+// Model performance (test set only)
+Test Rows = CALCULATE ( [Total Applications], Applications[Dataset] = "Test" )
+
+TP = CALCULATE ( [Total Applications], Applications[Dataset] = "Test", Applications[PredictionOutcome] = "True Positive" )
+TN = CALCULATE ( [Total Applications], Applications[Dataset] = "Test", Applications[PredictionOutcome] = "True Negative" )
+FP = CALCULATE ( [Total Applications], Applications[Dataset] = "Test", Applications[PredictionOutcome] = "False Positive" )
+FN = CALCULATE ( [Total Applications], Applications[Dataset] = "Test", Applications[PredictionOutcome] = "False Negative" )
+
+Model Accuracy  = DIVIDE ( [TP] + [TN], [Test Rows] )
+Model Precision = DIVIDE ( [TP], [TP] + [FP] )
+Model Recall    = DIVIDE ( [TP], [TP] + [FN] )
+Model F1        = DIVIDE ( 2 * [Model Precision] * [Model Recall], [Model Precision] + [Model Recall] )
+
+ROC AUC = LOOKUPVALUE ( TestMetrics[Value], TestMetrics[Metric], "ROC AUC" )
+
+// Interactive threshold (needs the "Threshold" what-if parameter)
+Selected Threshold = SELECTEDVALUE ( Threshold[Threshold], 0.45 )
+
+Approvals at Threshold =
+    CALCULATE ( [Total Applications],
+        FILTER ( Applications, Applications[ApprovalProbability] >= [Selected Threshold] ) )
+
+Approval Rate at Threshold = DIVIDE ( [Approvals at Threshold], [Total Applications] )
+
+Accuracy at Threshold =
+VAR T = [Selected Threshold]
+VAR TestTbl = FILTER ( Applications, Applications[Dataset] = "Test" )
+VAR Correct =
+    COUNTROWS ( FILTER ( TestTbl,
+        ( Applications[ApprovalProbability] >= T && Applications[Approved] = 1 ) ||
+        ( Applications[ApprovalProbability] <  T && Applications[Approved] = 0 ) ) )
+RETURN DIVIDE ( Correct, COUNTROWS ( TestTbl ) )
+
+Missed Good Applicants at Threshold =      // false negatives
+VAR T = [Selected Threshold]
+RETURN COUNTROWS ( FILTER ( Applications,
+    Applications[Dataset] = "Test" && Applications[Approved] = 1 && Applications[ApprovalProbability] < T ) )
+
+Risky Approvals at Threshold =             // false positives
+VAR T = [Selected Threshold]
+RETURN COUNTROWS ( FILTER ( Applications,
+    Applications[Dataset] = "Test" && Applications[Approved] = 0 && Applications[ApprovalProbability] >= T ) )
+
+// Formatting helpers
+Approval Rate Color = IF ( [Approval Rate] >= 0.5, "#2a9d8f", "#e76f51" )
+
+KPI Subtitle = "Based on " & FORMAT ( [Total Applications], "#,0" ) & " applications"
