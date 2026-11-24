@@ -1,0 +1,6 @@
+Gender,Age,Debt,Married,BankCustomer,EducationLevel,Ethnicity,YearsEmployed,PriorDefault,Employed,CreditScore,DriversLicense,Citizen,Income
+a,21.75,11.75,u,g,c,v,0.25,f,f,0,t,g,0
+,20.42,7.5,u,g,k,v,1.5,t,t,1,f,g,234
+b,27.83,1.0,y,p,d,h,3.0,f,f,0,f,g,537
+a,27.42,14.5,u,g,x,h,3.085,t,t,1,f,g,11
+b,34.17,1.54,u,g,cc,v,1.54,t,t,1,t,g,50000

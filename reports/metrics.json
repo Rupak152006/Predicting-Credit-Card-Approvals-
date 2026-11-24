@@ -1,0 +1,18 @@
+{
+  "best_model": "GradientBoosting",
+  "best_params": {
+    "subsample": 0.7,
+    "n_estimators": 50,
+    "min_samples_leaf": 1,
+    "max_depth": 2,
+    "learning_rate": 0.05
+  },
+  "threshold": 0.45,
+  "test_metrics": {
+    "accuracy": 0.8841,
+    "precision": 0.8689,
+    "recall": 0.8689,
+    "f1": 0.8689,
+    "roc_auc": 0.9619
+  }
+}

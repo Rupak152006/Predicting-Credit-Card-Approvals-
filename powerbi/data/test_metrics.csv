@@ -1,0 +1,6 @@
+Metric,Value
+Accuracy,0.8841
+Precision,0.8689
+Recall,0.8689
+F1,0.8689
+ROC AUC,0.9619

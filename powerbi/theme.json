@@ -1,0 +1,25 @@
+{
+  "name": "Credit Approval",
+  "dataColors": ["#2a9d8f", "#e76f51", "#264653", "#e9c46a", "#f4a261", "#8ab17d", "#6c757d", "#457b9d"],
+  "good": "#2a9d8f",
+  "neutral": "#e9c46a",
+  "bad": "#e76f51",
+  "maximum": "#2a9d8f",
+  "center": "#e9c46a",
+  "minimum": "#e76f51",
+  "background": "#FFFFFF",
+  "foreground": "#264653",
+  "tableAccent": "#2a9d8f",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#264653" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#495057" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#264653" }
+  },
+  "visualStyles": {
+    "*": { "*": {
+      "border": [{ "show": true, "color": { "solid": { "color": "#E9ECEF" } }, "radius": 8 }],
+      "dropShadow": [{ "show": false }]
+    }},
+    "page": { "*": { "background": [{ "color": { "solid": { "color": "#F6F8FA" } }, "transparency": 0 }] } }
+  }
+}
